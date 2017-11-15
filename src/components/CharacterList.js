@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addCharacterById} from '../actions/actions'
 
 
 class CharacterList extends Component{
@@ -12,7 +14,12 @@ class CharacterList extends Component{
                     {
                         this.props.characters.map(character =>{
                             return <li key={character.id}> 
-                                        {character.name}
+                                        <div>{character.name}</div>
+                                        <div onClick={()=>{
+                                            return this.props.addCharacterById(character.id)
+                                        }}>
+                                            +
+                                        </div>
                                    </li>
                         })
                     }
@@ -29,4 +36,10 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,null)(CharacterList);
+// if you dont want to write out the mapDispatchToProps function, you can just pass 
+// in the action creators in an object as the second argument of the connect function
+// function mapDispatchToProps(dispatch){
+//     return bindActionCreators({ addCharacterById}, dispatch )
+// }
+
+export default connect(mapStateToProps, { addCharacterById })(CharacterList);
