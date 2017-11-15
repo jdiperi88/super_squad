@@ -7,8 +7,12 @@ class App extends Component {
         return ( 
             <div className="App">
                 <h2>Super Squads</h2>
-                <CharacterList />
-                <HeroesList />
+                <div className="col-md-6">
+                    <CharacterList />
+                </div>
+                <div className='col-md-6'>
+                    <HeroesList />
+                </div>
             </div>
         )
     }

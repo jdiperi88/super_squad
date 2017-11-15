@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addCharacterById } from '../actions/actions';
+import { subtractCharacterById } from '../actions/actions';
 
 class HeroesList extends Component{
     render(){
@@ -13,7 +13,14 @@ class HeroesList extends Component{
                         this.props.heroes.map(hero =>{
                             return <li key={hero.id} className='list-group-item'>
                                         <div className='list-item'>{hero.name}</div>
-
+                                        <div 
+                                            className='list-item right-button' 
+                                            onClick={()=>{
+                                                return this.props.subtractCharacterById(hero.id);
+                                            }}
+                                        >
+                                            -
+                                        </div>
                                     </li>
                         })
                     }
@@ -30,4 +37,4 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps,{addCharacterById})(HeroesList)
+export default connect(mapStateToProps,{subtractCharacterById})(HeroesList)
